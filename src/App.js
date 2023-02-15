@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
+
+  const [mode, setMode] = React.useState(true)
+
+  function changeMode(){
+    setMode(function (prevMode){
+      return prevMode = !prevMode
+    })
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app' style={{ background: mode ?'#FFFFFF' : '#000000'}}>
+      <h1 style={{ color: mode ? '#000000' : '#FFFFFF'}}>{ mode ? "Light Mode" : "Dark Mode"}</h1>
+      <button
+        onClick={changeMode} 
+        style={{ border: mode ? '1px solid black' : '1px solid white',
+                  color: mode ? 'black' : 'white'}} >
+        { mode ? "Dark Mode" : "Light Mode"}
+      </button>
     </div>
   );
 }
